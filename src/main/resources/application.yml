@@ -1,0 +1,38 @@
+logging:
+  level:
+    root: debug
+
+oauth2:
+  client_id: clientauthcode
+  client-secret: 123456
+  redirect-uri: http://localhost:8080/redirect
+  authz-endpoint: http://localhost:8510/oauth/authorize
+  token-endpoint: http://localhost:8510/oauth/token
+  resource-url: http://localhost:8516/api/user
+  scope: read write
+  success-url: /index
+  authz-callback-class: com.github.ganity.oauth2.shiro.ShiroAuthzCallback
+  error-redirect-uri: /error
+
+shiro:
+  realm-class: com.citic.UserRealm
+  custom-authc-filter-class: com.citic.AjaxAuthorizationFilter
+  login-url: /authorize
+  success-url: /index
+  unauthorized-url: /unauthorized
+  sign-in:
+    user-param: username
+    password-param: password
+    remember-me-param: rememberMe
+  hash-iterations: 1024
+  hash-algorithm-name: SHA-256
+  stored-credentials-hex-encoded: false
+  filter-chain-definitions:
+    /js/**: anon
+    /css/**: anon
+    /fonts/**: anon
+    /img/**: anon
+    /logout: logout
+    /favicon.ico: anon
+    /index: authc
+    /anon: anon
