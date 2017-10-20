@@ -1,6 +1,6 @@
-logging:
-  level:
-    root: debug
+#logging:
+#  level:
+#    root: debug
 
 oauth2:
   client_id: clientauthcode
@@ -13,6 +13,7 @@ oauth2:
   success-url: /index
   authz-callback-class: com.github.ganity.oauth2.shiro.ShiroAuthzCallback
   error-redirect-uri: /error
+  logout-redirect-uri: /asLogout
 
 shiro:
   realm-class: com.citic.UserRealm
@@ -32,7 +33,11 @@ shiro:
     /css/**: anon
     /fonts/**: anon
     /img/**: anon
-    /logout: logout
+#    /logout: logout
     /favicon.ico: anon
     /index: authc
+    /perm: authc
+    /perm6: authc
+    /toLogout: authc
+    /asLogout: authc
     /anon: anon
